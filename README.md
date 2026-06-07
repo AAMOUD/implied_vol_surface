@@ -64,17 +64,17 @@ maturity_days,strike,iv
 ## Build & Run
 
 ### Requirements
-- C++11 or later
+- C++17 or later
 - Standard library (vector, fstream, sstream, algorithm, stdexcept)
 
 ### Compile
 ```bash
-g++ -std=c++11 -o implied_vol src/main.cpp src/cubic_spline.cpp src/thomas.cpp src/data_loader.cpp
+g++ -std=c++17 -o implied_vol src/main.cpp src/cubic_spline.cpp src/thomas.cpp src/data_loader.cpp
 ```
 
 Or with clang:
 ```bash
-clang++ -std=c++11 -o implied_vol src/main.cpp src/cubic_spline.cpp src/thomas.cpp src/data_loader.cpp
+clang++ -std=c++17 -o implied_vol src/main.cpp src/cubic_spline.cpp src/thomas.cpp src/data_loader.cpp
 ```
 
 ### Run
@@ -119,19 +119,6 @@ Located in `tools/`:
 - **visualize.py** — 3D/contour plot of interpolated IV surface
 
 (Requires: `pandas`, `matplotlib`, `scipy`)
-
-## File Format Notes
-
-### CSV Parsing
-- **Delimiter:** Comma
-- **Header:** maturity_days, strike, iv
-- **Data type:** Double precision floats
-- **Rows grouped by maturity** and sorted ascending by strike within each maturity
-
-### Error Handling
-- Missing/invalid data → exception with descriptive message
-- File not found → caught and reported to stderr
-- Invalid interpolation domain → assertion or exception
 
 ## References
 

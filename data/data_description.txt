@@ -1,0 +1,42 @@
+Dataset Description
+===================
+
+Underlying:        NVIDIA Corporation (NVDA)
+Data source:       Yahoo Finance option chain
+Collection date:   2026-06-06
+Option type:       Calls only
+
+Columns
+-------
+maturity_days : calendar days between collection date (2026-06-06) and expiration date
+strike        : option strike price in USD
+iv            : implied volatility in decimal form (e.g. 0.4857 = 48.57%)
+
+Maturities selected
+-------------------
+20  days  -> expiry 2026-06-26
+41  days  -> expiry 2026-07-17
+76  days  -> expiry 2026-08-21
+104 days  -> expiry 2026-09-18
+195 days  -> expiry 2026-12-18
+286 days  -> expiry 2027-03-19
+376 days  -> expiry 2027-06-17
+
+Maturities were selected to cover a broad range (short to long term)
+with reasonable spacing. Very near-term expiries (under 14 days) and
+far-dated expiries beyond 13 months were excluded due to low liquidity.
+
+Data cleaning steps
+-------------------
+1. Removed options with IV = 0 or near zero (stale/illiquid quotes)
+2. Removed options with both zero open interest and zero volume
+3. Restricted strikes to within +/- 30% of spot price ($205.10)
+4. Converted IV from percentage to decimal form
+5. Sorted strikes ascending within each maturity
+
+Target point
+------------
+K* = 207.0  (near at-the-money, inside all strike ranges, not a grid point)
+T* = 130.0  (between T=104 and T=195, not a grid point)
+
+NVDA spot price at collection: $205.10
